@@ -6,11 +6,8 @@ fun main() {
     fun part1(input: List<String>): Int {
         var position = Position(x = 0, y = 0, aim = 0)
         return input
-            .map { line ->
-                val array = line.split(" ")
-                array[0] to array[1].toInt()
-            }
-            .groupBy({ it.first }, { it.second })
+            .map { it.split(" ") }
+            .groupBy({ it[0] }, { it[1].toInt() })
             .map { Pair(it.key, it.value.sum()) }
             .fold(position) { _, (command, value) ->
                 position = when {
@@ -60,3 +57,4 @@ data class Position(val x: Int, val y: Int, val aim: Int)
 enum class Direction {
     DOWN, UP
 }
+
